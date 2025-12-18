@@ -21,15 +21,12 @@ int getTotalFreeSeats(int train[][SEATS_PER_COACH]);
 int getValidInput(const std::string& prompt, int minVal, int maxVal);
 void clearScreen();
 void showMessage(const std::string& message);
-//
 
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     srand(time(NULL));
-
-    srand(time(0)); // Инициализация генератора случайных чисел
 
     int train[NUM_COACHES][SEATS_PER_COACH];
     int choice;
@@ -142,23 +139,21 @@ void fillTrainRandomly(int train[][SEATS_PER_COACH])
 void printTrain(int train[][SEATS_PER_COACH])
 {
     std::cout << "\n" << std::string(70, '=') << std::endl;
-
     std::cout << "ТЕКУЩЕЕ СОСТОЯНИЕ МЕСТ В ПОЕЗДЕ" << std::endl;
-
     std::cout << std::string(70, '=') << std::endl;
 
     // Заголовок с номерами мест
-    std::cout << "Вагон\\Место";
+    std::cout << std::setw(14) << std::left << "Вагон\\Место";
     for (int seat = 1; seat <= SEATS_PER_COACH; seat++)
     {
-        printf("%3d", seat);
+        std::cout << std::setw(3) << seat;
     }
     std::cout << std::endl;
 
     // Вывод каждого вагона
     for (int i = 0; i < NUM_COACHES; i++)
     {
-        printf("Вагон %2d    ", i + 1);
+        std::cout << "Вагон " << std::setw(2) << std::left << i + 1 << "     ";
         for (int j = 0; j < SEATS_PER_COACH; j++)
         {
             if (train[i][j] == 1)
